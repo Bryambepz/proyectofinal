@@ -1,0 +1,155 @@
+<style>
+    .fondo_div {
+        padding-top: 0.5rem;
+        background-color: rgb(175, 234, 238);
+        text-align: center;
+    }
+
+    .grid_contenido {
+        display: grid;
+        grid-template-columns: 10rem 50rem;
+        gap: 1rem;
+        background-color: rgb(175, 234, 238);
+        justify-content: space-around;
+        padding: 1rem;
+        margin: 0.01rem;
+        height: 100%;
+    }
+
+    .grid_menu {
+        display: grid;
+        gap: 3px;
+        height: 50%;
+    }
+
+    .contenedor_form{
+        border: 2px solid black;
+        margin: 1.5rem;
+        padding: 2rem 3rem;
+        height: 30%;
+    }
+
+    .formulario {
+        width: min(60rem, 100%);
+        margin: 2rem auto;
+
+    }
+
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 0.5rem;
+        justify-content: center;
+    }
+
+    .campo {
+        margin-bottom: 1rem;
+    }
+
+    .imput-text {
+        text-align: justify;
+        margin-left: 1rem;
+        width: 50%;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .boton {
+        text-align: center;
+        background-color: rgb(42, 89, 99);
+        color: var(--blanco);
+        padding: 1rem;
+        margin-top: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        width: 50%;
+        text-align: center;
+        border: none;
+    }
+
+    .boton:hover {
+        color: rgb(255, 255, 255);
+    }
+
+    .w-50 {
+        width: 50%;
+    }
+
+    .alinear-centro {
+        justify-content: center;
+    }
+</style>
+
+<div class="fondo_div">
+    <div>
+        <img src="../assets/RmainLOGO.jpg" alt="banner">
+    </div>
+</div>
+<div class="grid_contenido">
+    <div class="grid_menu">
+        <h2>Menu</h2>
+        <a href="/crear-cliente?cliente={{cedulaCL}}">Crear Cliente</a>
+        <a href="#">Facturación</a>
+        <a href="/listar-cliente?cliente={{cedulaCL}}">Ver Clientes</a>
+        <a href="#">Ganacias</a>
+        <a href="#">Reservas</a>
+        <a href="#">Mesas</a>
+        <a href="#">Cerrar Sesion</a>
+    </div>
+
+    <div class="contenedor_form">
+        <form class="formulario">
+
+            <div class="contenedor-campos">
+                <div class="campo">
+                    <label style="margin-top: 0.5;">Cedula</label>
+                    <input [(ngModel)]="cliente.cedula" name="txtCedula" class="imput-text" type="text"
+                        placeholder="Ingrese Cedula" />
+                </div>
+
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input [(ngModel)]="cliente.nombre" name="txtNombre" class="imput-text" type="text"
+                        placeholder="Ingrese Nombre" />
+                </div>
+
+                <div class="campo">
+                    <label>Apellido</label>
+                    <input [(ngModel)]="cliente.apellido" name="txtApellido" class="imput-text" type="text"
+                        placeholder="Ingrese Apellido" />
+                </div>
+
+                <div class="campo">
+                    <label>Dirección</label>
+                    <input [(ngModel)]="cliente.direccion" name="txtDireccion" class="imput-text" type="text"
+                        placeholder="Ingrese Dirección" />
+                </div>
+
+                <div class="campo">
+                    <label>Membresia</label>
+                    <input [(ngModel)]="cliente.membresia" name="Membresia" class="imput-text" type="checkbox"
+                        placeholder="Valide" />
+                </div>
+
+                <div class="campo">
+                    <label>Correo</label>
+                    <input [(ngModel)]="cliente.email" name="txtCorreo" class="imput-text" type="email"
+                        placeholder="Ingrese Correo" />
+                </div>
+
+                <div class="campo">
+                    <label>Contraseña</label>
+                    <input [(ngModel)]="cliente.contrasenia" name="txtPass" class="imput-text" type="password" value=""/>
+                </div>
+            </div>
+
+            <div class="alinear-centro flex">
+                <button class="boton w-50" (click)="guardar()">Guardar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

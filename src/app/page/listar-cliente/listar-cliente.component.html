@@ -1,0 +1,153 @@
+<style>
+    .fondo_div {
+        padding-top: 0.5rem;
+        background-color: rgb(175, 234, 238);
+        text-align: center;
+    }
+
+    .grid_contenido {
+        display: grid;
+        grid-template-columns: 10rem 50rem;
+        gap: 1rem;
+        background-color: rgb(175, 234, 238);
+        justify-content: space-around;
+        padding: 1rem;
+        margin: 0.01rem;
+        height: 100%;
+    }
+
+    .grid_menu {
+        display: grid;
+        gap: 3px;
+        height: 50%;
+    }
+
+    .contenedor_form {
+        border: 2px solid black;
+        margin: 1.5rem;
+        padding: 2rem 3rem;
+        height: 30%;
+    }
+
+    .formulario {
+        width: min(60rem, 100%);
+        margin: 2rem auto;
+
+    }
+
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 0.5rem;
+        justify-content: center;
+    }
+
+    .campo {
+        margin-bottom: 1rem;
+    }
+
+    .imput-text {
+        text-align: justify;
+        margin-left: 1rem;
+        width: 50%;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .boton {
+        margin-left: 1rem;
+        text-align: center;
+        background-color: rgb(28, 125, 146);
+        color: var(--blanco);
+        padding: 1rem;
+        margin-top: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        width: 50%;
+        text-align: center;
+        border: none;
+    }
+
+    .boton:hover {
+        color: rgb(255, 255, 255);
+    }
+
+    .w-50 {
+        width: 20%;
+    }
+
+    .alinear-centro {
+        justify-content: center;
+    }
+</style>
+
+<div class="fondo_div">
+    <div>
+        <img src="../assets/RmainLOGO.jpg" alt="banner">
+    </div>
+</div>
+<div class="grid_contenido">
+    <div class="grid_menu">
+        <h2>Menu</h2>
+        <a href="/crear-cliente?cliente={{cedulaCL}}">Crear Cliente</a>
+        <a href="#">Facturación</a>
+        <a href="/listar-cliente?cliente={{cedulaCL}}">Ver Clientes</a>
+        <a href="#">Ganacias</a>
+        <a href="#">Reservas</a>
+        <a href="#">Mesas</a>
+        <a href="#">Cerrar Sesion</a>
+    </div>
+
+    <div class="contenedor_form">
+        <div>
+            <div class="campo">
+                <label>Nombre</label>
+                <input [(ngModel)]="cliente.cedula" name="txtCedula" class="imput-text" type="text"
+                    placeholder="Ingrese Cedula a Buscar" />
+                    <button class="boton w-50" (click)="buscar()">Buscar</button>
+            </div>
+
+            <div class="alinear-centro flex">
+            </div>
+        </div>
+        
+        <div>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Membreesia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cliente of clientes">
+                    <td>{{ cliente.cedula }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                    <td>{{ cliente.membresia }}</td>
+                    <!-- <td>
+                      <div>
+                        <select name="metodo" [(ngModel)]="pago.metodoPago" id="metodo">
+                          <option value="tarjeta debito">Tarjeta Débito</option>
+                          <option value="tarjeta credito">Tarjeta Crédito</option>
+                          <option value="Efectivo">Efectivo</option>
+                          <option value="Cheque">Cheque</option>
+                        </select>
+                      </div>
+                    </td> -->
+        
+        
+                    <!-- <td><button id="comprar" (click)="comprar(cliente.id, pago.metodoPago.toString())">Comprar</button></td> -->
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

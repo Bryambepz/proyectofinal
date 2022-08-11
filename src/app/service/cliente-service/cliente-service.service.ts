@@ -9,10 +9,9 @@ import { Cliente } from 'src/app/domain/cliente';
 export class ClienteServiceService {
   private clienteURL: string = '';
   constructor(private http: HttpClient) {}
-
   login(cliente: Cliente) {
-    console.log("log > ", cliente.email);
-    
+    console.log('log > ', cliente.email);
+
     this.clienteURL =
       'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/login';
     return this.http.post<Cliente>(
@@ -28,7 +27,8 @@ export class ClienteServiceService {
   guardarCliente(cliente: Cliente) {
     console.log('el us > ', cliente);
 
-    this.clienteURL ='http://localhost:8080/ProyectoFinalP60/apirest/restaurante/clienteC?cedula=' +
+    this.clienteURL =
+      'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/clienteC?cedula=' +
       cliente.cedula +
       '&nombre=' +
       cliente.nombre +
@@ -45,8 +45,25 @@ export class ClienteServiceService {
     return this.http.post<Cliente>(this.clienteURL, cliente);
   }
 
-  getCliente(): Observable<Cliente>{
-    this.clienteURL = 'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/clientes';
+  getCliente(): Observable<Cliente[]> {
+    this.clienteURL =
+      'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/clientes';
+    return this.http.get<Cliente[]>(this.clienteURL);
+  }
+
+  getClienteCedula(clienteCed: Cliente): Observable<Cliente> {
+    this.clienteURL =
+      'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/clientesCedula?cedula=' +
+      clienteCed.cedula;
     return this.http.get<Cliente>(this.clienteURL);
+  }
+
+  actualizar(cliente: Cliente) {
+    this.clienteURL =
+      'http://localhost:8080/ProyectoFinalP60/apirest/restaurante/actualizar?membresia=' +
+      cliente.membresia +
+      '&cedula=' +
+      cliente.cedula;
+    return this.http.post<Cliente>(this.clienteURL, cliente);
   }
 }

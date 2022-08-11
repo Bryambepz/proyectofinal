@@ -1,5 +1,5 @@
-import { pedido } from "./pedido";
-import { reserva } from "./reserva";
+// import { pedido } from "./pedido";
+// import { Reserva } from "./reserva";
 
 export class Cliente {
     id: number = 0;
@@ -10,11 +10,7 @@ export class Cliente {
     email: String = '';
     contrasenia: String = '';
     membresia: boolean = false;
-    pedidos: pedido[] = [];
-    reservas: reserva[] = [];
+    // pedidos: pedido[] = [];
+    // reservas: Reserva[] = [];
 
-}
-
-declare global {
-    var id: number;    
 }

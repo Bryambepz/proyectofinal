@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
       this.clienteService.login(this.cliente).subscribe((data) => {
         console.log("loguead ", data);     
         this.cliente = data;  
+
         if(data != null){
           let params: NavigationExtras = {
             queryParams: {
@@ -50,8 +51,10 @@ export class MainComponent implements OnInit {
             },
           };
           console.log('pa ', params);
+          environment.id = this.cliente.cedula.toString();
+          console.log('env main',environment.id);
           
-          this.router.navigate(['/crear-cliente'], params);
+          this.router.navigate(['/reservas'], params);
         }
 
       });

@@ -129,60 +129,35 @@
         <a href="/reservas?cliente={{cedulaCL}}">Reservas</a>
         <a href="/facturacion?cliente={{cedulaCL}}">Facturación</a>
         <a href="/ganancias?cliente={{cedulaCL}}">Ganacias</a>
+        <a href="/calificacion?cliente={{cedulaCL}}">Ganacias</a>
         <a href="/calificacion?cliente={{cedulaCL}}">Calificacion</a>
         <a href="#">Cerrar Sesion</a>
     </div>
 
-    <div class="contenedor_form">
-        <form class="formulario">
-
-            <div class="contenedor-campos">
-                <div class="campo">
-                    <label style="margin-top: 0.5;">Cedula</label>
-                    <input [(ngModel)]="cliente.cedula" name="txtCedula" class="imput-text" type="text"
-                        placeholder="Ingrese Cedula" />
-                </div>
-
-                <div class="campo">
-                    <label>Nombre</label>
-                    <input [(ngModel)]="cliente.nombre" name="txtNombre" class="imput-text" type="text"
-                        placeholder="Ingrese Nombre" />
-                </div>
-
-                <div class="campo">
-                    <label>Apellido</label>
-                    <input [(ngModel)]="cliente.apellido" name="txtApellido" class="imput-text" type="text"
-                        placeholder="Ingrese Apellido" />
-                </div>
-
-                <div class="campo">
-                    <label>Dirección</label>
-                    <input [(ngModel)]="cliente.direccion" name="txtDireccion" class="imput-text" type="text"
-                        placeholder="Ingrese Dirección" />
-                </div>
-
-                <div class="campo">
-                    <label>Membresia</label>
-                    <input [(ngModel)]="cliente.membresia" name="Membresia" class="imput-text" type="checkbox"
-                        placeholder="Valide" />
-                </div>
-
-                <div class="campo">
-                    <label>Correo</label>
-                    <input [(ngModel)]="cliente.email" name="txtCorreo" class="imput-text" type="email"
-                        placeholder="Ingrese Correo" />
-                </div>
-
-                <div class="campo">
-                    <label>Contraseña</label>
-                    <input [(ngModel)]="cliente.contrasenia" name="txtPass" class="imput-text" type="password" value=""/>
-                </div>
-            </div>
-
-            <div class="alinear-centro flex">
-                <button class="boton w-50" (click)="guardar()">Guardar</button>
-            </div>
-
-        </form>
+    <div class="contenedor_form tab_content">
+        <div>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Fecha Ingreso</th>
+                        <th scope="col">Fecha Salida</th>
+                        <th scope="col">Numero Personas</th>
+                        <th scope="col">Numero Mesa</th>
+                        <!-- <th scope="col">Cliente</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reserva of reservas">
+                        <td>{{ reserva.codigo }}</td>
+                        <td>{{ reserva.fechaIngreso }}</td>
+                        <td>{{ reserva.fechaSalida }}</td>
+                        <td>{{ reserva.numeroPersona }}</td>
+                        <td>{{ reserva.numeroMesa }}</td> 
+                        <!-- <td>{{ reserva.cedula }}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

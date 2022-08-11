@@ -133,56 +133,56 @@
         <a href="#">Cerrar Sesion</a>
     </div>
 
-    <div class="contenedor_form">
-        <form class="formulario">
-
-            <div class="contenedor-campos">
-                <div class="campo">
-                    <label style="margin-top: 0.5;">Cedula</label>
-                    <input [(ngModel)]="cliente.cedula" name="txtCedula" class="imput-text" type="text"
-                        placeholder="Ingrese Cedula" />
+    <div class="contenedor_form tab_content">
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div>
+                <h2>Escoja Calificacion</h2>
+                <div style="display: grid; width: 10%; gap: 10px;">
+                    <label for="a1">1 )
+                        <input type="checkbox" id="a" name="cal1" value="1" [(ngModel)]="calificacion.marca">
+                    </label>
+                    <label for="">2 )
+                        <input type="checkbox" id="b" name="cal2" value="2" [(ngModel)]="calificacion2.marca">
+                    </label>
+                    <label for="">3 )
+                        <input type="checkbox" id="c" name="cal3" value="3" [(ngModel)]="calificacion3.marca">
+                    </label>
+                    <label for="">4 )
+                        <input type="checkbox" id="d" name="cal4" value="5" [(ngModel)]="calificacion4.marca">
+                    </label>
+                    <label for="">5 )
+                        <input type="checkbox" id="e" name="cal5" value="5" [(ngModel)]="calificacion5.marca">
+                    </label>
+                    <button (click)="calificar()">Calificar</button>
                 </div>
 
-                <div class="campo">
-                    <label>Nombre</label>
-                    <input [(ngModel)]="cliente.nombre" name="txtNombre" class="imput-text" type="text"
-                        placeholder="Ingrese Nombre" />
-                </div>
-
-                <div class="campo">
-                    <label>Apellido</label>
-                    <input [(ngModel)]="cliente.apellido" name="txtApellido" class="imput-text" type="text"
-                        placeholder="Ingrese Apellido" />
-                </div>
-
-                <div class="campo">
-                    <label>Dirección</label>
-                    <input [(ngModel)]="cliente.direccion" name="txtDireccion" class="imput-text" type="text"
-                        placeholder="Ingrese Dirección" />
-                </div>
-
-                <div class="campo">
-                    <label>Membresia</label>
-                    <input [(ngModel)]="cliente.membresia" name="Membresia" class="imput-text" type="checkbox"
-                        placeholder="Valide" />
-                </div>
-
-                <div class="campo">
-                    <label>Correo</label>
-                    <input [(ngModel)]="cliente.email" name="txtCorreo" class="imput-text" type="email"
-                        placeholder="Ingrese Correo" />
-                </div>
-
-                <div class="campo">
-                    <label>Contraseña</label>
-                    <input [(ngModel)]="cliente.contrasenia" name="txtPass" class="imput-text" type="password" value=""/>
-                </div>
             </div>
-
-            <div class="alinear-centro flex">
-                <button class="boton w-50" (click)="guardar()">Guardar</button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; width: 50%;">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Cedula Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cli of cliOb">
+                            <td>{{ cli }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Calificacion Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cli of calsOb">
+                            <td>{{ cli }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-        </form>
+        </div>
     </div>
 </div>

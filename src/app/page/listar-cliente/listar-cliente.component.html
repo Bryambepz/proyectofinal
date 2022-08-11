@@ -7,7 +7,7 @@
 
     .grid_contenido {
         display: grid;
-        grid-template-columns: 10rem 50rem;
+        grid-template-columns: 20rem 50rem;
         gap: 1rem;
         background-color: rgb(175, 234, 238);
         justify-content: space-around;
@@ -26,7 +26,7 @@
         border: 2px solid black;
         margin: 1.5rem;
         padding: 2rem 3rem;
-        height: 30%;
+        height: 40%;
     }
 
     .formulario {
@@ -56,9 +56,8 @@
     }
 
     .boton {
-        margin-left: 1rem;
         text-align: center;
-        background-color: rgb(28, 125, 146);
+        background-color: rgb(77, 192, 218);
         color: var(--blanco);
         padding: 1rem;
         margin-top: 1rem;
@@ -76,11 +75,43 @@
     }
 
     .w-50 {
-        width: 20%;
+        width: 50%;
     }
 
     .alinear-centro {
         justify-content: center;
+    }
+
+    .grid_nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-evenly;
+        margin-bottom: 1.5rem;
+    }
+
+    .grid_nav::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        padding: 15px;
+        background: rgb(77, 192, 218);
+        color: rgb(3, 5, 5);
+        font-size: 20px;
+        float: left;
+        width: 70%;
+        text-align: center;
+        cursor: pointer;
+        transition: .5s ease;
+    }
+
+    a:hover {
+        background: rgb(16, 82, 82);
+        color: white;
     }
 </style>
 
@@ -93,11 +124,12 @@
     <div class="grid_menu">
         <h2>Menu</h2>
         <a href="/crear-cliente?cliente={{cedulaCL}}">Crear Cliente</a>
-        <a href="#">Facturación</a>
         <a href="/listar-cliente?cliente={{cedulaCL}}">Ver Clientes</a>
-        <a href="#">Ganacias</a>
-        <a href="#">Reservas</a>
-        <a href="#">Mesas</a>
+        <a href="/reserva?cliente={{cedulaCL}}">Realizar Reservación</a>
+        <a href="/reservas?cliente={{cedulaCL}}">Reservas</a>
+        <a href="/facturacion?cliente={{cedulaCL}}">Facturación</a>
+        <a href="/ganancias?cliente={{cedulaCL}}">Ganacias</a>
+        <a href="/calificacion?cliente={{cedulaCL}}">Calificacion</a>
         <a href="#">Cerrar Sesion</a>
     </div>
 
@@ -107,47 +139,41 @@
                 <label>Nombre</label>
                 <input [(ngModel)]="cliente.cedula" name="txtCedula" class="imput-text" type="text"
                     placeholder="Ingrese Cedula a Buscar" />
-                    <button class="boton w-50" (click)="buscar()">Buscar</button>
             </div>
-
-            <div class="alinear-centro flex">
+            <div style="margin-bottom: 1rem;">
+                <button class="boton w-50" (click)="buscar()">Buscar</button>
+                <button class="botonC w-50" (click)="Cancelar()">Cancelar</button>
             </div>
         </div>
-        
+
         <div>
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Cedula</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Membreesia</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">Cedula</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Membreesia</th>
+                        <th scope="col">Modificar_Membresia</th>
+                        <th scope="col">Confirmar</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let cliente of clientes">
-                    <td>{{ cliente.cedula }}</td>
-                    <td>{{ cliente.nombre }}</td>
-                    <td>{{ cliente.apellido }}</td>
-                    <td>{{ cliente.direccion }}</td>
-                    <td>{{ cliente.membresia }}</td>
-                    <!-- <td>
-                      <div>
-                        <select name="metodo" [(ngModel)]="pago.metodoPago" id="metodo">
-                          <option value="tarjeta debito">Tarjeta Débito</option>
-                          <option value="tarjeta credito">Tarjeta Crédito</option>
-                          <option value="Efectivo">Efectivo</option>
-                          <option value="Cheque">Cheque</option>
-                        </select>
-                      </div>
-                    </td> -->
-        
-        
-                    <!-- <td><button id="comprar" (click)="comprar(cliente.id, pago.metodoPago.toString())">Comprar</button></td> -->
-                  </tr>
+                    <tr *ngFor="let cliente of clientes">
+                        <td>{{ cliente.cedula }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                        <td>{{ cliente.membresia }}</td>
+                        <td><input [(ngModel)]="cliente.membresia" name="Membresia" class="imput-text" type="checkbox"
+                                placeholder="Valide" /></td>
+                        <td>
+                            <button (click)="membresia(cliente.cedula.toString(), cliente.membresia)">Confirmar</button>
+                        </td>
+                    </tr>
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
 </div>
